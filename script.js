@@ -6,7 +6,9 @@ const calculator = {
 };
 
 getNumber = (num) => {
-    if (calculator.secondOperand == null && calculator.firstOperand == null) text = "";
+    if (text == "0") text = "";
+    if (equaled && calculator.secondOperand == null) text = "";
+
     if (calculatorReset) {
         document.getElementById("outputTopLine").style.textAlign = "right";
         document.getElementById("outputTopLine").innerHTML = null;
@@ -15,11 +17,14 @@ getNumber = (num) => {
         calculatorReset = false;
     }
 
+    equaled = false;
+
+    operatorPlaced = false;
     text += num.value;
     Operand += num.value;
     document.getElementById("outputTopLine").innerHTML = text;
     secondOperandTurn
-        ? ((calculator.secondOperand = parseFloat(Operand)), (operatorPlaced = false))
+        ? ((calculator.secondOperand = parseFloat(Operand)))
         : (calculator.firstOperand = parseFloat(Operand));
     console.log(calculator.firstOperand + "," + calculator.secondOperand);
     console.log("text = " + text);
@@ -28,19 +33,20 @@ getNumber = (num) => {
 };
 
 setOperator = (op) => {
-    if ((op.value == "-" && calculatorReset) || operatorTurn) {
+    if (firstMinusSign || operatorTurn) {
         if (equaled) equaled = false;
         if (operatorPlaced) {
             text = text.toString().substring(0, text.length - 1);
             console.log("text = " + text);
         }
 
-        if (text == "") {
+        if (firstMinusSign && text == "") {
             text += Operand = "-";
             document.getElementById("outputTopLine").style.textAlign = "right";
             document.getElementById("outputTopLine").innerHTML = text;
             calculatorReset = false;
             console.log(text + "sign");
+            firstMinusSign = false;
             return;
         }
 
@@ -93,16 +99,15 @@ evaluate = () => {
 };
 
 equals = () => {
-    if (!equaled) {
+    if (!equaled && secondOperandTurn) {
         Operand = "";
         document.getElementById("outputTopLine").innerHTML = text = calculator.firstOperand = evaluate();
         document.getElementById("outputBottomLine").innerHTML = null;
         secondOperandTurn = false;
-        decimalPlaced = false;
         operatorTurn = true;
         operatorPlaced = false;
         calculator.secondOperand = null;
-        equaled = false;
+        equaled = true;
         console.log("=");
     }
 };
@@ -117,27 +122,35 @@ AC = () => {
     calculatorReset = true;
     operatorTurn = false;
     operatorPlaced = false;
+    firstMinusSign = true;
     calculator.firstOperand = calculator.secondOperand = null;
+    console.clear();
     console.log("AC");
     equaled = true;
 };
 
 addDecimal = (decimal) => {
     if (!decimalPlaced) {
+        document.getElementById("outputTopLine").style.textAlign = "right";
+        if (equaled && calculator.secondOperand == null) {
+            text = "";
+            console.log("dfsfd");
+            calculatorReset = equaled = false;
+        }
         text += decimal.value;
         Operand += decimal.value;
         document.getElementById("outputTopLine").innerHTML = text;
         decimalPlaced = true;
+        console.log("text = " + text);
     }
 };
 
 clearOperand = () => {
     if (calculator.secondOperand == null && operatorPlaced == false) {
+        if (equaled) AC();
         if (text.length <= 1) AC();
         else {
-            text = Number(text)
-                .toString()
-                .substring(0, text.length - 1);
+            text = Number(text).toString().substring(0, text.length - 1);
             Operand = Operand.substring(0, Operand.length - 1);
             calculator.firstOperand = parseFloat(Operand);
             document.getElementById("outputTopLine").innerHTML = text;
@@ -157,6 +170,7 @@ clearOperand = () => {
         calculator.secondOperand = null;
         text = text.toString().substring(0, text.length - 1);
         document.getElementById("outputTopLine").innerHTML = text;
+        document.getElementById("outputBottomLine").innerHTML = calculator.firstOperand;
         console.log("Second Operand " + Operand);
     }
 };
