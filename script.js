@@ -6,7 +6,7 @@ const calculator = {
 };
 
 getNumber = (num) => {
-    if (equaled) text = "";
+    if (calculator.secondOperand == null && calculator.firstOperand == null) text = "";
     if (calculatorReset) {
         document.getElementById("outputTopLine").style.textAlign = "right";
         document.getElementById("outputTopLine").innerHTML = null;
@@ -14,8 +14,6 @@ getNumber = (num) => {
         text = "";
         calculatorReset = false;
     }
-
-    equaled = false;
 
     text += num.value;
     Operand += num.value;
@@ -78,7 +76,6 @@ shiftOperand = () => {
 
 evaluate = () => {
     if (!equaled) {
-        equaled = false;
         const { firstOperand, secondOperand, operator } = calculator;
         switch (operator) {
             case "+":
@@ -105,7 +102,7 @@ equals = () => {
         operatorTurn = true;
         operatorPlaced = false;
         calculator.secondOperand = null;
-        equaled = true;
+        equaled = false;
         console.log("=");
     }
 };
@@ -122,7 +119,7 @@ AC = () => {
     operatorPlaced = false;
     calculator.firstOperand = calculator.secondOperand = null;
     console.log("AC");
-    equaled = false;
+    equaled = true;
 };
 
 addDecimal = (decimal) => {
