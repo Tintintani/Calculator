@@ -1,0 +1,87 @@
+body {
+    height : 100vh;
+    margin:0px;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(
+        90deg,
+        rgb(102, 102, 102),
+        rgb(54, 54, 54)
+    );
+}
+
+#grid {
+    color: white;
+    background: #121212;
+    display: grid;
+    width: 350px;
+    height: 500px;
+    grid-template-rows: 25% auto auto auto auto;
+    grid-template-columns: 25% 25% 25%;
+    overflow-x: hidden;
+}
+
+#output {
+
+    grid-column: 1/5;
+    padding: 5px;
+    font-size: 2.25rem;
+    background-color: #2e2e2e;
+}
+
+#outputBottomLine {
+    overflow: hidden;
+}
+
+input {
+    font-family: sans-serif;
+    color: white;
+    background-color: transparent;
+    font-size: 2rem;
+    padding: 0px;
+    border: 0px;
+    border-radius: 50%;
+    margin: 5px 11px;
+}
+
+input:hover {
+    background: rgba(54, 54, 54, 0.75);
+    opacity: 0.75;
+}
+
+.operator {
+    border-radius: 50%;
+    background-color: #2e2e2e;
+}
+
+#equalsign {
+    background-color: #DC143C;
+    border-radius: 50%;
+}
+
+
+#outputTopLine{
+    text-align: left;
+}
+
+#outputBottomLine{
+    text-align : right;
+}
+
+.elongatedButton {
+    width: 43%;
+    height:100%;
+    margin: 0;
+    z-index: 1  ;
+}
+
+.elongatedButtonContainer{
+    text-align: center;
+    padding: 2px;
+}
+
+@media only screen and (max-width: 768px){
+
+}

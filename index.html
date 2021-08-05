@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>Calculator</title>
+        <script type="text/javascript" src="script.js" defer></script>
+    </head>
+    <body onload="AC()">
+        <div id="grid">
+            <div id="output">
+                <div id="outputTopLine">Calculator</div>
+                <div id="outputBottomLine"></div>
+            </div>
+            <input type="button" value="AC" onclick="AC()" />
+            <input type="button" value="C" onclick="clearOperand()" />
+            <input class="button" type="button" value="%" onclick="setOperator(this)" />
+            <input class="operator" type="button" value="÷" onclick="setOperator(this)" />
+            <input class="number" type="button" value="7" onclick="getNumber(this)" />
+            <input class="number" type="button" value="8" onclick="getNumber(this)" />
+            <input class="number" type="button" value="9" onclick="getNumber(this)" />
+            <input class="operator" type="button" value="×" onclick="setOperator(this)" />
+            <input class="number" type="button" value="4" onclick="getNumber(this)" />
+            <input class="number" type="button" value="5" onclick="getNumber(this)" />
+            <input class="number" type="button" value="6" onclick="getNumber(this)" />
+            <input class="operator" type="button" value="-" onclick="setOperator(this)" />
+            <input class="number" type="button" value="1" onclick="getNumber(this)" />
+            <input class="number" type="button" value="2" onclick="getNumber(this)" />
+            <input class="number" type="button" value="3" onclick="getNumber(this)" />
+            <input class="operator" type="button" value="+" onclick="setOperator(this)" />
+            <div class="elongatedButtonContainer" style="grid-column: 1/3">
+                <input class="elongatedButton" type="button" value="0" onclick="getNumber(this)" />
+            </div>
+
+            <input type="button" value="." onclick="addDecimal(this)" />
+            <input id="equalsign" type="button" value="=" onclick="equals()" />
+        </div>
+    </body>
+</html>
